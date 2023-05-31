@@ -35,6 +35,7 @@ def algoritm(mm):
             elif(tempR==r):
                 if(min(mm[0][z], mm[1][z]) <= min(mm[0][mZ], mm[1][mZ])):
                     mZ = z
+                    
     if(r==-1):
         print("impossível")
     elif(mZ==-1):
