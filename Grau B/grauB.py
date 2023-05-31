@@ -31,6 +31,8 @@ def algoritm(mm):
             tempR = solveB(len(mm),mm,z)
             if(tempR>r):
                 r = tempR
+                mZ = z
+            elif(tempR==r):
                 if(min(mm[0][z], mm[1][z]) <= min(mm[0][mZ], mm[1][mZ])):
                     mZ = z
     if(r==-1):
