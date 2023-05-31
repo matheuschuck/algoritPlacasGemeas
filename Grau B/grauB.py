@@ -1,4 +1,8 @@
 def solve(n, matrix, i):
+    '''
+    Método que realiza a checagem sem excluir nenhuma peça.
+    Apenas virando as peças.
+    '''
     soma = -1
     if(i>=n):
         return -1
@@ -15,6 +19,9 @@ def solve(n, matrix, i):
     return max(soma0, soma1, soma)
 
 def solveB(n, mat, z):
+    '''
+    Método que faz a exclusão de uma peça e chama solve para somar o array com a peça removido.
+    '''
     mat2= mat.copy()
     mat2[0] = mat[0].copy()
     mat2[1] = mat[1].copy()
@@ -23,8 +30,11 @@ def solveB(n, mat, z):
     return solve(n, mat2, 0)
 
 def algoritm(mm):
-    r = solve(3, mm, 0)
-    mZ = -1
+    '''
+    Método principal. 
+    '''
+    r = solve(3, mm, 0) # variável que salva a maior soma
+    mZ = -1 # Coordenada da placa que foi descartada // -1 = a nenhuma descartada
     if(r==-1):
         for z in range(0,len(mm[0])):
             #print(mm)
