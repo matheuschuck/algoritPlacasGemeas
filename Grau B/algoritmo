@@ -9,3 +9,10 @@ algoritm
 int solve
 
 int solveB
+
+
+
+
+/////////////////////////////////////////////////
+Passo 1: O algorimo recebe as placas de numeros pariados(um numero emcima e outro embaixo)
+Passo 2:Verifica se em suas posições atuais, a soma dos numeros de cima e de baixo são iguais, e salva o resultado se for iguais
