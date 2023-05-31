@@ -1,0 +1,11 @@
+algoritm
+    first := solve
+    if (first = -1)
+        for i := 0 to len(matrix[][]) do
+            secund = solveB 
+
+
+
+int solve
+
+int solveB
