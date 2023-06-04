@@ -1,13 +1,29 @@
+import csv
+
+
+def readPlates(file_path):
+    # Método que lê as entradas em um arquivo .txt
+
+    with open(file_path, newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=' ')
+        n = int(next(reader)[0])
+        matrix = []
+        for row in reader:
+            row = [int(num) for num in row]
+            matrix.append(row)
+        return matrix, n
+
+
 def solve(n, matrix, i):
     '''
     Método que realiza a checagem sem excluir nenhuma peça.
     Apenas virando as peças.
     '''
     soma = -1
-    if(i>=n):
+    if (i >= n):
         return -1
-    elif(sum(matrix[0]) == sum(matrix[1])):
-        #print(sum(matrix[0]))
+    elif (sum(matrix[0]) == sum(matrix[1])):
+        # print(sum(matrix[0]))
         soma = sum(matrix[0])
     temp0 = matrix[0][i]
     temp1 = matrix[1][i]
@@ -15,52 +31,53 @@ def solve(n, matrix, i):
     matrix[0][i] = temp1
     matrix[1][i] = temp0
     soma1 = solve(n, matrix, i+1)
-    #print(matrix, " ",i)
+    # print(matrix, " ",i)
     return max(soma0, soma1, soma)
+
 
 def solveB(n, mat, z):
     '''
-    Método que faz a exclusão de uma peça e chama solve para somar o array com a peça removido.
+    Método que faz a exclusão de uma peça e
+    chama solve para somar o array com a peça removido.
     '''
-    mat2= mat.copy()
+    mat2 = mat.copy()
     mat2[0] = mat[0].copy()
     mat2[1] = mat[1].copy()
     mat2[0][z] = 0
     mat2[1][z] = 0
     return solve(n, mat2, 0)
 
+
 def algoritm(mm):
     '''
-    Método principal. 
+    Método principal.
     '''
-    r = solve(3, mm, 0) # variável que salva a maior soma
-    mZ = -1 # Coordenada da placa que foi descartada // -1 = a nenhuma descartada
-    if(r==-1):
-        for z in range(0,len(mm[0])):
-            #print(mm)
-            tempR = solveB(len(mm),mm,z)
-            if(tempR>r):
+    r = solve(3, mm, 0)  # variável que salva a maior soma
+    # Coordenada da placa que foi descartada // -1 = a nenhuma descartada
+    mZ = -1
+    if (r == -1):
+        for z in range(0, len(mm[0])):
+            # print(mm)
+            tempR = solveB(len(mm), mm, z)
+            if (tempR > r):
                 r = tempR
                 mZ = z
-            elif(tempR==r):
-                if(min(mm[0][z], mm[1][z]) <= min(mm[0][mZ], mm[1][mZ])):
+            elif (tempR == r):
+                if (min(mm[0][z], mm[1][z]) <= min(mm[0][mZ], mm[1][mZ])):
                     mZ = z
-                    
-    if(r==-1):
+
+    if (r == -1):
         print("impossível")
-    elif(mZ==-1):
-        print(r,"nenhuma placa descartada")
+    elif (mZ == -1):
+        print(r, "nenhuma placa descartada")
     else:
-        print(r,"descartada a placa",mm[0][mZ],mm[1][mZ])
-        
-        
-    
+        print(r, "descartada a placa", mm[0][mZ], mm[1][mZ])
 
 
-mm = [[10,10,10],[10,11,10]]
-algoritm(mm)
-#print(mm)
-#print(sum(mm[0]))
-
-
-
+mm = [[10, 10, 10], [10, 11, 10]]
+# algoritm(mm)
+# print(mm)
+# print(sum(mm[0]))
+file_path = './in_out/in4'
+plates, n = readPlates(file_path)
+algoritm(plates)
