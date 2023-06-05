@@ -55,7 +55,7 @@ def algoritm(mm):
     '''
     Método principal.
     '''
-    r = solve(3, mm, 0)  # variável que salva a maior soma
+    r = solve(len(mm[0]), mm, 0)  # variável que salva a maior soma
     # Coordenada da placa que foi descartada // -1 = a nenhuma descartada
     mZ = -1
     if (r == -1):
