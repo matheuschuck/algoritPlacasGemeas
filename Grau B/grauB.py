@@ -10,10 +10,10 @@ def readPlates(file_path):
         matrix = [[],[]]
         for row in reader:
             row = [int(num) for num in row]
-            print(row,"row")
+            #print(row,"row")
             matrix[0].append(row[0])
             matrix[1].append(row[1])
-            print(matrix)
+            #print(matrix)
         return matrix, n
 
 
