@@ -17,7 +17,7 @@ def readPlates(file_path):
         return matrix, n
 
 
-def solve(n, matrix, i):
+def solve(n, matrix, i, again):
     '''
     Método que realiza a checagem sem excluir nenhuma peça.
     Apenas virando as peças.
@@ -25,15 +25,15 @@ def solve(n, matrix, i):
     soma = -1
     if (i >= n):
         return -1
-    elif (sum(matrix[0]) == sum(matrix[1])):
+    elif ((again!=1) and (sum(matrix[0]) == sum(matrix[1]))):
         # print(sum(matrix[0]))
         soma = sum(matrix[0])
     temp0 = matrix[0][i]
     temp1 = matrix[1][i]
-    soma0 = solve(n, matrix, i+1)
+    soma0 = solve(n, matrix, i+1,1)
     matrix[0][i] = temp1
     matrix[1][i] = temp0
-    soma1 = solve(n, matrix, i+1)
+    soma1 = solve(n, matrix, i+1,0)
     # print(matrix, " ",i)
     return max(soma0, soma1, soma)
 
@@ -48,14 +48,14 @@ def solveB(n, mat, z):
     mat2[1] = mat[1].copy()
     mat2[0][z] = 0
     mat2[1][z] = 0
-    return solve(n, mat2, 0)
+    return solve(n, mat2, 0, 0)
 
 
 def algoritm(mm):
     '''
     Método principal.
     '''
-    r = solve(len(mm[0]), mm, 0)  # variável que salva a maior soma
+    r = solve(len(mm[0]), mm, 0, 0)  # variável que salva a maior soma
     # Coordenada da placa que foi descartada // -1 = a nenhuma descartada
     mZ = -1
     if (r == -1):
