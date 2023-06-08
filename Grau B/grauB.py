@@ -7,14 +7,22 @@ def readPlates(file_path):
     with open(file_path, newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter=' ')
         n = int(next(reader)[0])
-        matrix = [[],[]]
+        matrix = [[], []]
         for row in reader:
             row = [int(num) for num in row]
-            #print(row,"row")
-            matrix[0].append(row[0])
-            matrix[1].append(row[1])
-            #print(matrix)
-        return matrix, n
+            # Condição para ler várias instancias
+            if len(row) == 1:
+                algoritm(matrix)
+                matrix = [[], []]
+                # n = int(next(reader))
+            # print(row, "row")
+            else:
+                matrix[0].append(row[0])
+                matrix[1].append(row[1])
+            # print(matrix)
+
+        # return matrix, n
+        return "fim", matrix, n
 
 
 def solve(n, matrix, i, again):
@@ -25,15 +33,15 @@ def solve(n, matrix, i, again):
     soma = -1
     if (i >= n):
         return -1
-    elif ((again!=1) and (sum(matrix[0]) == sum(matrix[1]))):
+    elif ((again != 1) and (sum(matrix[0]) == sum(matrix[1]))):
         # print(sum(matrix[0]))
         soma = sum(matrix[0])
     temp0 = matrix[0][i]
     temp1 = matrix[1][i]
-    soma0 = solve(n, matrix, i+1,1)
+    soma0 = solve(n, matrix, i+1, 1)
     matrix[0][i] = temp1
     matrix[1][i] = temp0
-    soma1 = solve(n, matrix, i+1,0)
+    soma1 = solve(n, matrix, i+1, 0)
     # print(matrix, " ",i)
     return max(soma0, soma1, soma)
 
@@ -72,16 +80,18 @@ def algoritm(mm):
     if (r == -1):
         print("impossível")
     elif (mZ == -1):
-        print(r, "nenhuma placa descartada")
+        print(r, "\nNenhuma placa descartada.")
     else:
-        print(r, "descartada a placa", mm[0][mZ], mm[1][mZ])
+        print(r, "\nDescartada a placa", mm[0][mZ], mm[1][mZ])
 
 
-#mm = [[10, 10, 10], [10, 11, 10]]
+# mm = [[10, 10, 10], [10, 11, 10]]
 # algoritm(mm)
 # print(mm)
 # print(sum(mm[0]))
+# file_path = './implementacao/Grau B/in_out/in4'
 file_path = './in_out/in4'
-plates, n = readPlates(file_path)
-print(plates)
-algoritm(plates)
+# plates, n = readPlates(file_path)
+print(readPlates(file_path))
+# print(plates)
+# algoritm(plates)
