@@ -1,4 +1,18 @@
 import csv
+import time
+
+'''
+
+Implementação da solução por força bruta para o problema
+proposto de placas de jogos antigos.
+
+Desenvolvido por Matheus Milanezi e Pedro Tubino
+
+'''
+
+
+# Inicio da contagem de tempo de execução
+start = time.time()
 
 
 def readPlates(file_path):
@@ -12,8 +26,12 @@ def readPlates(file_path):
             row = [int(num) for num in row]
             # Condição para ler várias instancias
             if len(row) == 1:
-                algoritm(matrix)
+                algoritm(matrix, n)
                 matrix = [[], []]
+                end = time.time()
+                total = end - start
+                total = '%.4f' % total
+                print(f'Tempo parcial: {total}')
                 # n = int(next(reader))
             # print(row, "row")
             else:
@@ -22,7 +40,10 @@ def readPlates(file_path):
             # print(matrix)
 
         # return matrix, n
-        return "fim", matrix, n
+        end = time.time()
+        total = end - start
+        total = '%.4f' % total  # saída setada para 4 números depois da vírgula
+        return f"Fim: Tempo de execução total: {total} segundos."
 
 
 def solve(n, matrix, i, again):
@@ -59,15 +80,15 @@ def solveB(n, mat, z):
     return solve(n, mat2, 0, 0)
 
 
-def algoritm(mm):
+def algoritm(mm, n):
     '''
     Método principal.
     '''
-    r = solve(len(mm[0]), mm, 0, 0)  # variável que salva a maior soma
+    r = solve(n, mm, 0, 0)  # variável que salva a maior soma
     # Coordenada da placa que foi descartada // -1 = a nenhuma descartada
     mZ = -1
     if (r == -1):
-        for z in range(0, len(mm[0])):
+        for z in range(0, n):
             # print(mm)
             tempR = solveB(len(mm), mm, z)
             if (tempR > r):
@@ -80,17 +101,17 @@ def algoritm(mm):
     if (r == -1):
         print("impossível")
     elif (mZ == -1):
-        print(r, "\nNenhuma placa descartada.")
+        print(r, "nenhuma placa descartada.")
     else:
-        print(r, "\nDescartada a placa", mm[0][mZ], mm[1][mZ])
+        print(r, "descartada a placa", mm[0][mZ], mm[1][mZ])
 
 
 # mm = [[10, 10, 10], [10, 11, 10]]
 # algoritm(mm)
 # print(mm)
 # print(sum(mm[0]))
-# file_path = './implementacao/Grau B/in_out/in4'
-file_path = './in_out/in4'
+# file_path = './implementacao/Grau B/in_out/in1'
+file_path = './in_out/in7'
 # plates, n = readPlates(file_path)
 print(readPlates(file_path))
 # print(plates)
