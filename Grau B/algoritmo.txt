@@ -16,7 +16,7 @@ print("impossível")
  	else if (placaRemovida = -1)
  		print(resultado, "nenhuma placa descartada")
 	else
-		print(resultado,"descartada a placa", placas[0][placaRemovida], placas[1][placaRemovida]])
+		print(resultado,"descartada a placa", placas[0][placaRemovida], placas[1][placaRemovida])
 
 função somaA(n, placas, i) retorna inteiro
     soma = -1
@@ -32,3 +32,7 @@ função solveRemovendoPlacaI(placas, i) retorna inteiro
 placas[0][i].remover
 placas[1][i].remover
 return somaA(len(placas[0]), placas, 0)
+
+
+
+

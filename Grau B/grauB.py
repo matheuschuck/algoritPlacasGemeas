@@ -29,9 +29,7 @@ def readPlates(file_path):
                 algoritm(matrix, n)
                 matrix = [[], []]
                 end = time.time()
-                total = end - start
-                total = '%.4f' % total
-                print(f'Tempo parcial: {total}')
+                n = int(row[0])
                 # n = int(next(reader))
             # print(row, "row")
             else:
@@ -110,8 +108,8 @@ def algoritm(mm, n):
 # algoritm(mm)
 # print(mm)
 # print(sum(mm[0]))
-# file_path = './implementacao/Grau B/in_out/in1'
-file_path = './in_out/in7'
+# file_path = './implementacao/Grau B/in_out/in'
+file_path = './in_out/in8'
 # plates, n = readPlates(file_path)
 print(readPlates(file_path))
 # print(plates)
