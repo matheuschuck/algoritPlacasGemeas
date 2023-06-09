@@ -1,18 +1,34 @@
-algoritm
-    first := solve
-    if (first = -1)
-        for i := 0 to len(matrix[][]) do
-            secund = solveB 
+#placas[0] é a lista dos valores de cima, placas[1] e a lista de valores de baixo
 
+resultado := somaA(tamanho(placas[0]), placas, 0)
+placaRemovida = -1
+ 	if (resultado = -1)
+ 		for i := 0 to length(placas[0]) do
+ 		resultadoPlacaRemovida = solveRemovendoPlacaI(placas,i)
+			if(resultadoPlacaRemovida > resultado)
+				resultado := resultadoPlacaRemovida
+				placaRemovida := i
+			else if(resultadoPlacaRemovida = resultado)
+				if(menorValorPlaca(i) <= menorValorPlaca(placaRemovida))
+					placaRemovida := i
+	if (resultado = -1)
+print("impossível")
+ 	else if (placaRemovida = -1)
+ 		print(resultado, "nenhuma placa descartada")
+	else
+		print(resultado,"descartada a placa", placas[0][placaRemovida], placas[1][placaRemovida]])
 
+função somaA(n, placas, i) retorna inteiro
+    soma = -1
+    se i >= n então
+        retorne -1
+    senão se a soma da linha de cima de placas for igual à soma da linha de baixo então
+        soma = soma da linha de cima
+    somaSemVirarPlaca = solve(n, placas, i+1)
+    somaVirandoAPlaca = solve(n, placas com os valores na posição i invertidos, i+1)
+    retorne o máximo entre soma, somaSemVirarPlaca e somaVirandoAPlaca
 
-int solve
-
-int solveB
-
-
-
-
-/////////////////////////////////////////////////
-Passo 1: O algorimo recebe as placas de numeros pariados(um numero emcima e outro embaixo)
-Passo 2:Verifica se em suas posições atuais, a soma dos numeros de cima e de baixo são iguais, e salva o resultado se for iguais
+função solveRemovendoPlacaI(placas, i) retorna inteiro
+placas[0][i].remover
+placas[1][i].remover
+return somaA(len(placas[0]), placas, 0)
