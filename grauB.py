@@ -88,7 +88,7 @@ def algoritm(mm, n):
     if (r == -1):
         for z in range(0, n):
             # print(mm)
-            tempR = solveB(len(mm), mm, z)
+            tempR = solveB(len(mm[0]), mm, z)
             if (tempR > r):
                 r = tempR
                 mZ = z
